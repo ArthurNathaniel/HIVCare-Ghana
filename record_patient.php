@@ -27,18 +27,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Record Patient Data</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to generate a unique patient ID in the format of 8 digits and year
+        function generatePatientId() {
+            const randomDigits = Math.floor(10000000 + Math.random() * 90000000); // 8 random digits
+            const year = new Date().getFullYear().toString().slice(-2); // Get last 2 digits of the year (e.g., "24")
+            const patientId = randomDigits + '-' + year; // Combine random digits and year
+            document.getElementById("patient_id").value = patientId; // Set the patient ID in the form field
+        }
+
+        // Call the function when the page loads
+        window.onload = function() {
+            generatePatientId();
+        };
+    </script>
 </head>
 <body>
     <div class="form-container">
         <h1>Record Patient Data</h1>
         <form action="record_patient.php" method="POST">
-            <input type="text" name="patient_id" placeholder="Patient ID" required>
+            <input type="text" id="patient_id" name="patient_id" placeholder="Patient ID" readonly>
             <input type="text" name="name" placeholder="Full Name" required>
             <input type="date" name="date_of_birth" placeholder="Date of Birth" required>
             <select name="gender" required>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="Other">Other</option>
             </select>
             <input type="text" name="contact_number" placeholder="Contact Number">
             <input type="date" name="diagnosis_date" placeholder="Diagnosis Date" required>
