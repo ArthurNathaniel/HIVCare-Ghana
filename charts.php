@@ -43,11 +43,15 @@ $diagnosis_year_data = $diagnosis_year_query->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <?php include 'cdn.php' ?>
     <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/chart.css">
 </head>
 <body>
+<?php include 'navbar.php' ?>
     <div class="container">
+  
         <h1>Patient Data Dashboard</h1>
         
         <!-- Total Number of Patients -->
@@ -145,34 +149,6 @@ $diagnosis_year_data = $diagnosis_year_query->fetchAll();
 </html>
 
 <style>
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-.chart-container {
-    margin: 30px 0;
-}
-
-canvas {
-    width: 100% !important;
-    max-width: 800px;
-    margin: 0 auto;
-}
 
 </style>

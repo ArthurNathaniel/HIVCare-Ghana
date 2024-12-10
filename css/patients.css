@@ -40,3 +40,16 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.all_patients{
+    padding: 0 10%;
+    margin-top: 50px;
+}
+
+.all_patients button{
+    width: 100%;
+    height: 40px;
+    background-color: rgb(58, 58, 190);
+    color: #fff;
+    border: none;
+}

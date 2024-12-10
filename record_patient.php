@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Record Patient Data</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php include 'cdn.php' ?>
+    <link rel="stylesheet" href="./css/base.css">
     <script>
         // Function to generate a unique patient ID in the format of 8 digits and year
         function generatePatientId() {
@@ -43,24 +44,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
+<?php include 'navbar.php' ?>
     <div class="form-container">
         <h1>Record Patient Data</h1>
         <form action="record_patient.php" method="POST">
-            <input type="text" id="patient_id" name="patient_id" placeholder="Patient ID" readonly>
+          <div class="forms">
+          <input type="text" id="patient_id" name="patient_id" placeholder="Patient ID" readonly>
+          </div>
+          <div class="forms">
             <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="forms">
             <input type="date" name="date_of_birth" placeholder="Date of Birth" required>
+            </div>
+            <div class="forms">
             <select name="gender" required>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
+            </div>
+            <div class="forms">
             <input type="text" name="contact_number" placeholder="Contact Number">
+            </div>
+            <div class="forms">
             <input type="date" name="diagnosis_date" placeholder="Diagnosis Date" required>
+            </div>
+            <div class="forms">
             <select name="treatment_status" required>
                 <option value="On Treatment">On Treatment</option>
                 <option value="Awaiting Treatment">Awaiting Treatment</option>
                 <option value="Not On Treatment">Not On Treatment</option>
             </select>
+            </div>
+            <div class="forms">
             <button type="submit">Record Data</button>
+            </div>
+       
         </form>
     </div>
 </body>

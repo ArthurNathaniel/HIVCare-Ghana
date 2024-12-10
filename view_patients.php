@@ -1,8 +1,17 @@
 <?php
 require 'db.php';
 
-// Fetch patients from the database
-$stmt = $pdo->query("SELECT * FROM patients");
+// Check if a search term has been submitted
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Fetch patients from the database, filtered by search term if provided
+if ($search) {
+    $stmt = $pdo->prepare("SELECT * FROM patients WHERE patient_id LIKE ? OR name LIKE ?");
+    $stmt->execute(["%$search%", "%$search%"]);
+} else {
+    $stmt = $pdo->query("SELECT * FROM patients");
+}
+
 $patients = $stmt->fetchAll();
 ?>
 
@@ -12,6 +21,7 @@ $patients = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Patients</title>
+    <?php include 'cdn.php' ?>
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/patients.css">
     <script>
@@ -45,18 +55,36 @@ $patients = $stmt->fetchAll();
     </script>
 </head>
 <body>
-    <h1>View Patients</h1>
+<?php include 'navbar.php' ?>
 
-    <!-- Table to display patient IDs and names -->
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Patient ID</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
+   <div class="all_patients">
+   <h1>View Patients</h1>
+
+   <!-- Search Form -->
+
+ <form method="GET" action="view_patients.php">
+ <div class="forms">      
+ <input type="text" name="search" placeholder="Search by Patient ID or Name" value="<?php echo htmlspecialchars($search); ?>" />
+ </div>     
+ <div class="forms">
+      <button type="submit">Search</button>
+      </div>
+   </form>
+
+ <br>
+ <br>
+ <br>
+<!-- Table to display patient IDs and names -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (count($patients) > 0): ?>
             <?php foreach ($patients as $patient): ?>
             <tr>
                 <td><?php echo $patient['patient_id']; ?></td>
@@ -64,8 +92,14 @@ $patients = $stmt->fetchAll();
                 <td><button onclick="openModal('<?php echo $patient['patient_id']; ?>')">View Details</button></td>
             </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
+        <?php else: ?>
+            <tr>
+                <td colspan="3">No patients found.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+   </div>
 
     <!-- Modal for viewing patient details -->
     <div id="patientModal" style="display: none;">

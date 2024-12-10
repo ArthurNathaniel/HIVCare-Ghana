@@ -1,0 +1,23 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.chart-container {
+    margin: 30px 0;
+}
+
+canvas {
+    width: 100% !important;
+    max-width: 800px;
+    margin: 0 auto;
+}
