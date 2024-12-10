@@ -1,5 +1,11 @@
 <?php
+// db.php - Connect to the database
 require 'db.php';
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: login.php');
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $patient_id = $_POST['patient_id'];

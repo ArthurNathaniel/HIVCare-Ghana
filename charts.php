@@ -1,6 +1,11 @@
 <?php
 // db.php - Connect to the database
 require 'db.php';
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: login.php');
+    exit;
+}
 
 // Fetch the total number of patients
 $total_patients_query = $pdo->query("SELECT COUNT(*) AS total_patients FROM patients");

@@ -1,5 +1,11 @@
 <?php
+// db.php - Connect to the database
 require 'db.php';
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: login.php');
+    exit;
+}
 
 // Check if a search term has been submitted
 $search = isset($_GET['search']) ? $_GET['search'] : '';
