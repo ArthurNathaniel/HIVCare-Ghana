@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #f2f4f6;
+
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .all{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  .swiper_box{
+    overflow: hidden;
+  }
+
+  .swiper_box img{
+    height: 100vh;
+  }
+
+  .forms_all{
+    padding: 0 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+form{
+    width: 100%;
+}
+  .forms{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forms input{
+width: 100%;
+height: 45px;
+border: 2px solid #333;
+padding-left: 3%;
+  }
+
+  .forms button{
+    width: 100%;
+    height: 45px;
+    border: none;
+    background-color: #D44E20;
+    color: #fff;
+      }
