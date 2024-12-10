@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("INSERT INTO patients (patient_id, name, date_of_birth, gender, contact_number, diagnosis_date, treatment_status) 
                           VALUES (?, ?, ?, ?, ?, ?, ?)");
     if ($stmt->execute([$patient_id, $name, $date_of_birth, $gender, $contact_number, $diagnosis_date, $treatment_status])) {
-        echo "Patient data recorded successfully!";
+        echo "<script>alert('Patient data recorded successfully!');</script>";
     } else {
-        echo "Error recording patient data!";
+        echo "<script>alert('Error recording patient data!');</script>";
     }
 }
 ?>
